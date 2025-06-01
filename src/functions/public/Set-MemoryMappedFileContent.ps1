@@ -28,6 +28,10 @@ function Set-MemoryMappedFileContent {
         .LINK
         https://psmodule.io/MemoryMapped/Functions/Set-MemoryMappedFileContent/
     #>
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+        'PSUseShouldProcessForStateChangingFunctions', '',
+        Justification = 'The function only updates a memory-mapped file.'
+    )]
     [OutputType([System.IO.MemoryMappedFiles.MemoryMappedFile])]
     [CmdletBinding()]
     param(

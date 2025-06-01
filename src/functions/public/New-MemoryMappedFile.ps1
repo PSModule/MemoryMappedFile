@@ -30,7 +30,10 @@
         .LINK
         https://psmodule.io/MemoryMapped/Functions/New-MemoryMappedFile/
     #>
-
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+        'PSUseShouldProcessForStateChangingFunctions', '',
+        Justification = 'The function only creates a memory-mapped file and does not modify system state in a way that requires confirmation.'
+    )]
     [OutputType([System.IO.MemoryMappedFiles.MemoryMappedFile])]
     [CmdletBinding()]
     param(
@@ -49,8 +52,8 @@
 
     if (Test-Path $Path) {
         $file = Get-Item -Path $Path
-        $filesize = $file.Length
-        if ($filesize -gt 0) {
+        $Size = $file.Length
+        if ($Size -gt 0) {
             Write-Verbose "Opening existing file from '$Path' as '$Name'"
             return [System.IO.MemoryMappedFiles.MemoryMappedFile]::CreateFromFile(
                 $Path,
@@ -65,6 +68,6 @@
         $Path,
         [System.IO.FileMode]::OpenOrCreate,
         $Name,
-        $FileSize
+        $Size
     )
 }

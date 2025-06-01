@@ -30,6 +30,10 @@
         .LINK
         https://psmodule.io/MemoryMapped/Functions/Set-MemoryMappedFile/
     #>
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute(
+        'PSUseShouldProcessForStateChangingFunctions', '',
+        Justification = 'The function only creates a memory-mapped file and does not modify system state in a way that requires confirmation.'
+    )]
     [OutputType([System.IO.MemoryMappedFiles.MemoryMappedFile])]
     [CmdletBinding()]
     param(
