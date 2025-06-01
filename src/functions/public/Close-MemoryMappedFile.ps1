@@ -41,3 +41,5 @@
         Write-Verbose "Memory-mapped file '$Name' closed successfully."
     }
 }
+
+#SkipTest:FunctionTest:Will add a test for this function in a future PR

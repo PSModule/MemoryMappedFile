@@ -56,3 +56,5 @@
 
     return New-MemoryMappedFile -Name $Name -Path $Path -Size $Size
 }
+
+#SkipTest:FunctionTest:Will add a test for this function in a future PR
