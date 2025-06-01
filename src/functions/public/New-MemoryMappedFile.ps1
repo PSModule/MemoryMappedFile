@@ -53,17 +53,9 @@
     if (Test-Path $Path) {
         $file = Get-Item -Path $Path
         $Size = $file.Length
-        if ($Size -gt 0) {
-            Write-Verbose "Opening existing file from '$Path' as '$Name'"
-            return [System.IO.MemoryMappedFiles.MemoryMappedFile]::CreateFromFile(
-                $Path,
-                [System.IO.FileMode]::OpenOrCreate,
-                $Name
-            )
-        }
+    } else {
+        $null = New-Item -Path $Path -ItemType File -Force
     }
-
-    Write-Verbose "Opening new file at '$Path' as '$Name'"
     return [System.IO.MemoryMappedFiles.MemoryMappedFile]::CreateFromFile(
         $Path,
         [System.IO.FileMode]::OpenOrCreate,
