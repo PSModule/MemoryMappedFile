@@ -53,9 +53,8 @@
     if (Test-Path $Path) {
         $file = Get-Item -Path $Path
         $Size = $file.Length
-    }
-    if (-not (Test-Path $Path)) {
-        $null = New-Item -ItemType Directory -Path $directory -Force
+    } else {
+        $null = New-Item -Path $Path -ItemType File -Force
     }
     return [System.IO.MemoryMappedFiles.MemoryMappedFile]::CreateFromFile(
         $Path,
