@@ -59,7 +59,7 @@ function Set-MemoryMappedFileContent {
         $bytes = [System.Text.Encoding]::UTF8.GetBytes($Content)
         Write-Verbose "Writing content of size $($bytes.Length) bytes to memory-mapped file '$Name'."
         $size = $bytes.Length
-        $mmf = Set-MemoryMappedFile -Name $Name -Path $Path -FileSize $size
+        $mmf = Set-MemoryMappedFile -Name $Name -Path $Path -Size $size
         try {
             $accessor = $mmf.CreateViewAccessor()
         } catch {
