@@ -21,7 +21,10 @@
         Retrieves the memory-mapped file named 'SharedMemoryBlock'.
 
         .OUTPUTS
-        System.IO.MemoryMappedFiles.MemoryMappedFile. The memory-mapped file object if successful.
+        System.IO.MemoryMappedFiles.MemoryMappedFile
+
+        .NOTES
+        The memory-mapped file object if successful.
         null. Returned when the specified memory-mapped file does not exist or an error occurs.
 
         .LINK

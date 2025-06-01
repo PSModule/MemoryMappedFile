@@ -33,7 +33,7 @@
     try {
         $item = [System.IO.MemoryMappedFiles.MemoryMappedFile]::OpenExisting($Name)
     } catch {
-        $null
+        return $null
     }
 
     if ($item) {

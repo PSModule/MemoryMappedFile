@@ -2,15 +2,18 @@
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
-        [string] $Name
+        [string] $Name,
+
+        [Parameter()]
+        [int] $RefreshSeconds = 1
     )
 
     begin {}
 
     process {
         while ($true) {
-            Read-MemoryMappedFileContent -Name 'shared'
-            Start-Sleep -Seconds 1
+            Read-MemoryMappedFileContent -Name $Name
+            Start-Sleep -Seconds $RefreshSeconds
             Clear-Host
         }
     }
