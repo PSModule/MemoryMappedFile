@@ -1,19 +1,21 @@
-﻿<#
-  .SYNOPSIS
-    This is a general example of how to use the module.
-#>
+﻿#
+# Monitor process
+#
+Show-MemoryMappedFile -Name 'shared'
 
-# Import the module
-Import-Module -Name 'PSModule'
 
-# Define the path to the font file
-$FontFilePath = 'C:\Fonts\CodeNewRoman\CodeNewRomanNerdFontPropo-Regular.tff'
-
-# Install the font
-Install-Font -Path $FontFilePath -Verbose
-
-# List installed fonts
-Get-Font -Name 'CodeNewRomanNerdFontPropo-Regular'
-
-# Uninstall the font
-Get-Font -Name 'CodeNewRomanNerdFontPropo-Regular' | Uninstall-Font -Verbose
+#
+# Client that writes to the memory-mapped file
+#
+$params = @{
+    Name    = 'shared'
+    Path    = "$HOME\shared.json"
+    Content = [PSCustomObject]@{
+        Name    = 'This is my name'
+        Size    = 'XL'
+        Content = 'This is my content'
+        Date    = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
+        Tags    = @('tag1', 'tag2', 'tag3')
+    } | ConvertTo-Json -Depth 10
+}
+Set-MemoryMappedFileContent @params -PassThru
