@@ -12,11 +12,11 @@ param()
 Describe 'Module' {
     Context 'MemoryMappedFile' {
         It 'New-MemoryMappedFile' {
-            $fileName = "$HOME\test.json"
-            $size = 1024
-            $mmf = New-MemoryMappedFile -Name 'shared' -Path $fileName -Size $size
+            $path = './shared.json'
+            $mmf = New-MemoryMappedFile -Name 'shared' -Path $path
+            { $mmf.Dispose() } | Should -Not -Throw
             $mmf | Should -Not -BeNullOrEmpty
-            Test-Path $fileName | Should -BeTrue
+            Test-Path $path | Should -BeTrue
         }
 
         It 'Get-MemoryMappedFile' {
