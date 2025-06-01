@@ -14,10 +14,9 @@
     if (Test-Path $Path) {
         $file = Get-Item -Path $Path
         $filesize = $file.Length
+    } else {
+        $file = New-Item -Path $Path -ItemType File -Force
     }
-    #  else {
-    #     $file = New-Item -Path $Path -ItemType File -Force
-    # }
     return [System.IO.MemoryMappedFiles.MemoryMappedFile]::CreateFromFile(
         $Path,
         [System.IO.FileMode]::OpenOrCreate,
