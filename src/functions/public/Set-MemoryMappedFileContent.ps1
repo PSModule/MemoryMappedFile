@@ -84,5 +84,8 @@ function Set-MemoryMappedFileContent {
             $accessor.Flush()
             $accessor.Dispose()
         }
+        if ($mmf) {
+            $mmf.Dispose()
+        }
     }
 }
