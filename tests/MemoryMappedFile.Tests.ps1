@@ -12,7 +12,7 @@ param()
 Describe 'Module' {
     Context 'MemoryMappedFile' {
         It 'No tests yet...' {
-            Write-Host 'No tests yet...'
+            Write-Warning 'No tests yet...'
         }
     }
 }
