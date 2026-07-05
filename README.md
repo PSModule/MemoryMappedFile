@@ -1,69 +1,60 @@
-# {{ NAME }}
+# MemoryMappedFile
 
-{{ DESCRIPTION }}
+MemoryMappedFile is a PowerShell module for creating, reading, writing, and closing named memory-mapped files.
 
 ## Prerequisites
 
-This uses the following external resources:
-- The [PSModule framework](https://github.com/PSModule/Process-PSModule) for building, testing and publishing the module.
+- PowerShell with `Microsoft.PowerShell.PSResourceGet` available for `Install-PSResource`.
+- The [PSModule framework](https://github.com/PSModule) is used for building, testing, and publishing the module.
 
 ## Installation
 
-To install the module from the PowerShell Gallery, you can use the following command:
+Install the module from the PowerShell Gallery:
 
 ```powershell
-Install-PSResource -Name {{ NAME }}
-Import-Module -Name {{ NAME }}
+Install-PSResource -Name MemoryMappedFile
+Import-Module -Name MemoryMappedFile
 ```
+
+## Commands
+
+- `New-MemoryMappedFile` creates a named memory-mapped file from a backing file path.
+- `Set-MemoryMappedFile` returns an existing map by name or creates it when missing.
+- `Get-MemoryMappedFile` opens an existing named map.
+- `Set-MemoryMappedFileContent` writes UTF-8 string content to a named map.
+- `Read-MemoryMappedFileContent` reads UTF-8 string content from a named map.
+- `Show-MemoryMappedFile` displays map content repeatedly in the console.
+- `Close-MemoryMappedFile` disposes a named map.
 
 ## Usage
 
-Here is a list of example that are typical use cases for the module.
-
-### Example 1: Greet an entity
-
-Provide examples for typical commands that a user would like to do with the module.
+Create or open a map backed by a file:
 
 ```powershell
-Greet-Entity -Name 'World'
-Hello, World!
+Set-MemoryMappedFile -Name 'SharedMap' -Path './shared.dat' -Size 2MB
 ```
 
-### Example 2
-
-Provide examples for typical commands that a user would like to do with the module.
+Write and read string content:
 
 ```powershell
-Import-Module -Name PSModuleTemplate
+Set-MemoryMappedFileContent -Name 'SharedMap' -Path './shared.dat' -Content 'Hello from PowerShell'
+Read-MemoryMappedFileContent -Name 'SharedMap'
 ```
 
-### Find more examples
+Close the map when finished:
 
-To find more examples of how to use the module, please refer to the [examples](examples) folder.
+```powershell
+Close-MemoryMappedFile -Name 'SharedMap'
+```
 
-Alternatively, you can use the Get-Command -Module 'This module' to find more commands that are available in the module.
-To find examples of each of the commands you can use Get-Help -Examples 'CommandName'.
+## Examples
+
+More usage examples are available in the [examples](examples) folder.
 
 ## Documentation
 
-Link to further documentation if available, or describe where in the repository users can find more detailed documentation about
-the module's functions and features.
+Command documentation is published at [psmodule.io/MemoryMappedFile](https://psmodule.io/MemoryMappedFile/).
 
 ## Contributing
 
-Coder or not, you can contribute to the project! We welcome all contributions.
-
-### For Users
-
-If you don't code, you still sit on valuable information that can make this project even better. If you experience that the
-product does unexpected things, throw errors or is missing functionality, you can help by submitting bugs and feature requests.
-Please see the issues tab on this project and submit a new issue that matches your needs.
-
-### For Developers
-
-If you do code, we'd love to have your contributions. Please read the [Contribution guidelines](CONTRIBUTING.md) for more information.
-You can either help by picking up an existing issue or submit a new one if you have an idea for a new feature or improvement.
-
-## Acknowledgements
-
-Here is a list of people and projects that helped this project in some way.
+Issues and pull requests are welcome. Please use the repository issue tracker to report bugs, request features, or discuss improvements.
